@@ -1,0 +1,15 @@
+ Day1Part2←{
+     ⍺←50 0
+     0=⍴⍵:⍺
+     (cur tail)←(⊃⍵)(1↓⍵)
+
+     ⍝ The raw impact of the current turn
+     raw←(⍎1↓cur)×¯1+2×⊃cur='R'
+     ⍝ The number of full rotations in the current turn
+     r←⌊(|raw)÷100
+     ⍝ The net impact of the current turn
+     net←raw-(×raw)×r×100
+     ⍝ The actual new position
+     n←100|(⊃⍺+net)
+     n(⍺[2]+0=n)∇ tail
+ }
