@@ -1,15 +1,22 @@
- Day1Part2←{
+ Day1Part2←{ ⍝ I'm sure this can be made shorter & simpler, but I'm still an APL n00b
+     ⍝ Set starting position & zero count
      ⍺←50 0
+     ⍝ Exit condition
      0=⍴⍵:⍺
+     ⍝ Split ⍵ into the current turn and the rest of the input
      (cur tail)←(⊃⍵)(1↓⍵)
-
      ⍝ The raw impact of the current turn
      raw←(⍎1↓cur)×¯1+2×⊃cur='R'
      ⍝ The number of full rotations in the current turn
      r←⌊(|raw)÷100
      ⍝ The net impact of the current turn
      net←raw-(×raw)×r×100
+     ⍝ The unrounded new position
+     pos←(⊃⍺+net)
      ⍝ The actual new position
-     n←100|(⊃⍺+net)
-     n(⍺[2]+0=n)∇ tail
+     n←100|pos
+     ⍝ Add an extra rotation if we didn't start on zero, but we passed it or landed on it
+     r←r+(0≠⊃⍺)∧(pos≠n)∨(n=0)
+     ⍝ Call recursively
+     n(⍺[2]+r)∇ tail
  }
