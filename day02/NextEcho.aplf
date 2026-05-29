@@ -1,0 +1,17 @@
+ NextEcho←{
+     digits←⌈10⍟⍵+1
+
+     ⍝ Odd number of digits: Generate a number of the form 11, 1010, 100100, etc
+     2|digits:(10*digits)+10*⌊digits÷2
+
+     ⍝ Split the number in left and right halves
+     mult←10*digits÷2
+     left←⌊⍵÷mult
+     right←mult|⍵
+
+     ⍝ If the right is larger than the left, we need to add one to it
+     ⍝ to ensure that the echoed number is larger than the original input
+     n←left+right>left
+
+     n+n×mult
+ }
