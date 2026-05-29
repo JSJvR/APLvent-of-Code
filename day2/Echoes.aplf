@@ -1,5 +1,0 @@
-Echoes←{
-     n←NextEcho ⍺
-     n>⍵:⍬
-     n,(n+1)∇ ⍵
- }

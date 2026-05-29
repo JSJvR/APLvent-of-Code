@@ -1,4 +1,4 @@
- Day1Part2←{ ⍝ I'm sure this can be made shorter & simpler, but I'm still an APL n00b
+ Part2←{ ⍝ I'm sure this can be made shorter & simpler, but I'm still an APL n00b
      ⍝ Set starting position & zero count
      ⍺←50 0
      ⍝ Exit condition

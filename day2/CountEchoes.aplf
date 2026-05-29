@@ -1,5 +1,0 @@
- CountEchoes←{
-     ⍺>⍵:0
-     n←NextEcho ⍺
-     (n≤⍵)+(n+1)∇ ⍵
- }
