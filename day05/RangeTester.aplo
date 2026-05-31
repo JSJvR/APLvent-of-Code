@@ -1,0 +1,4 @@
+ RangeTester←{
+     ⍝ Failed attempt to be clever
+     (⍺⍺∘≤∧⍵⍵≥⊢)⍵
+ }
