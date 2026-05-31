@@ -1,0 +1,6 @@
+ Run←{
+     ⍺←1 ⍝ Default to Part1
+     day←'day',(¯2↑'0',⍕⍵)
+     ns←day ⎕NS''
+     ns ⍎ 'Part',⍕⍺,' #.ReadData ', ⍕⍵
+ }
