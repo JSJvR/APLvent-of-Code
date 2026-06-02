@@ -1,0 +1,10 @@
+ Part1←{
+     d←↑' '(≠⊆⊢)¨⍵
+     nums←¯1↓d
+     ops←⊃,/¯1↑d
+
+     ⍝ There must be a better way to do all of this
+     ops[('*'=ops)/⍳⍴ops]←'×'
+     mat←((,∘'/')¨ops)⍪nums
+     0 0⍕+/⍎¨,⌿(' '∘,)¨mat
+ }
