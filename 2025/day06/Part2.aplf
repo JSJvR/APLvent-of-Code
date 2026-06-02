@@ -1,0 +1,12 @@
+ Part2←{
+     d←↑⍵
+     mat←,⌿¯1↓d
+     ops←⊃,/¯1↑d
+     nums←↑(∨⌿¨' '≠mat)⊆mat
+
+     ⍝ There must be a better way to do **all** of this
+     ops[('*'=ops)/⍳⍴ops]←'×'
+     ops2←⍪(,∘'/')¨' '(≠⊆⊢)ops
+     0 0⍕+/⍎¨,/(' '∘,)¨ ops2,nums
+
+ }
