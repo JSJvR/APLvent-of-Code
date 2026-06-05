@@ -40,4 +40,18 @@ Thanks to Link, every APL function lives in its own file: `.aplf` files are func
 
 `Run` (`Run.aplf`) builds the day name, makes sure the namespace exists, and dispatches to the requested part with that day's input already loaded via `ReadData` (`ReadData.aplf`).
 
-Note on AI usage: I used Claude Code to help edit this README, but everything else is 100% pure hand-written, artisanal code. I'm here to have fun and learn. Nothing else. 
+## Useful Resources
+
+- [APLcart](https://aplcart.info/) - A repository of APL idioms
+- [APL Wiki](https://www.aplwiki.com/)
+   - [APL built-ins](https://aplwiki.com/wiki/Template:APL_built-ins) - This is a template that's embedded at the bottom of many pages, but it's actually a good reference on its own.
+   - [Function composition](https://aplwiki.com/wiki/Function_composition) - A useful reference for all your Tacit programming needs.
+- [Dyalog ](https://www.youtube.com/@DyalogLtd) YouTube Channel
+   - [Train Spotting in Dyalog APL](https://www.youtube.com/live/Enlh5qwwDuY) - Don't know what the fork you're doing? This is the video that made forks and function trains in general click for me.
+   - [Inline Tracing in Dyalog](https://www.youtube.com/watch?v=UM-ahvEpLew) - A useful tool for debugging APL and a great way to learn.
+- [Dyalog User Meetings](https://www.youtube.com/@DyalogUserMeeting) YouTube channel 
+- Conor Hoekstra's [code_report](https://www.youtube.com/@code_report) YouTube channel - Plenty of interesting videos on APL and other array languages.
+
+----
+
+A note on AI usage: I used Claude Code to help write the first version of this README, but everything else is 100% pure, hand-written, artisanal code. I'm here to have fun and learn. Nothing else. 
