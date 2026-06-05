@@ -1,0 +1,7 @@
+ ValidWithDrop←{
+     ⍺←1
+     l←≢⍵
+     ⍺>l:0
+     IsValid 2-/⍵[⍺~⍨⍳l]:1
+     (⍺+1) ∇ ⍵
+ }

@@ -1,0 +1,8 @@
+ FlipLights←{
+     target←⍺⍺
+     switches←⍵⍵
+     ⍝ ⍺ ← 0⍴⍨⍴target
+     ⍺←0
+     (⍺>100)∨1=∨/∧/¨target∘=¨⍵:⍺
+     ⍺+1 ∇ ∪,⍵∘.≠switches
+ }

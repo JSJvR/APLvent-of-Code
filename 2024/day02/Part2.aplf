@@ -1,0 +1,8 @@
+ Part2←{
+     data←⍎¨¨' '(≠⊆⊢)¨⍵
+
+     ⍝+/((⌈/=⌊/)¨×¨diffs)∧∧/¨(3∘≥∧1∘≤)¨|¨diffs
+     valid_mask←IsValid¨2-/¨data
+     (+/valid_mask)++/ValidWithDrop¨data/⍨~valid_mask
+
+ }
