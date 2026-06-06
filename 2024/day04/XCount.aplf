@@ -1,0 +1,7 @@
+ XCount←{
+     ⍺←3
+     xm←3 3⍴'S.S.A.M.M'
+     m←(⍺ Rotate xm)XMatch ⍵
+     ⍺=0:m
+     m+(⍺-1)XCount ⍵
+ }

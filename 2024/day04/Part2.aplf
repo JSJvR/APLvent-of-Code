@@ -1,0 +1,7 @@
+ Part2←{
+     ⍝ Part 2 is way easier than part 1, or actually, it just
+     ⍝ makes it very obvious that I didn't need the fancy diagonal
+     ⍝ stuff I did in part 1. Just use Stencil! So obvious in
+     ⍝ hindsight.
+     +/,XCount↑⍵
+ }
