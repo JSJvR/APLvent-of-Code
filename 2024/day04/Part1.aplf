@@ -1,0 +1,49 @@
+ Part1←{
+     ⍝ This is the first problem that I felt was way beyond
+     ⍝ my current APL skills
+
+     ⍝ Getting the vertical and horizontal matches is easy, but
+     ⍝ I had no idea how to do diagonals. I thought maybe some
+     ⍝ form of diagonal ravel? Luckily APLcart came to the
+     ⍝ rescue.
+
+     ⍝ This problem is a good learning experience, so I'm 
+     ⍝ keeping it verbose & explicit 
+     ⍝ Just add a "⊢" before any of the assignments to 
+     ⍝ get the output at that point.
+
+     data←↑⍵
+     xm←'XMAS'
+     ⍝ Reversing data would also work, but I find the results
+     ⍝ easier to interpret this way around
+     mx←⌽xm
+
+     horiz_f←xm⍷data
+     horiz_r←mx⍷data
+
+     ⍝ Transposing the result back is unnecessary, but makes 
+     ⍝ it visually easier to interpret the result in early debugging
+     vert_f←⍉xm⍷⍉data
+     vert_r←⍉mx⍷⍉data
+
+     hv←horiz_f+horiz_r+vert_f+vert_r
+
+     ⍝ Shamelessly copied from APLcart. I don't fully understand
+     ⍝ exactly how it works ... yet. I understand how it constructs
+     ⍝ a matrix with numbered diagonals, but I haven't yet wrapped 
+     ⍝ my brain around everything left of the comma
+
+     ⍝ Anti-diagonals first (since that's what APLcart has)
+     a_diag←↑{⍵⊂⍤⊢⌸⍥,⍨+/↑⍳⍴⍵}data
+     a_diag_f←xm⍷a_diag
+     a_diag_r←mx⍷a_diag
+     ad←a_diag_f+a_diag_r
+
+     ⍝ For the forward diagonals we need to reverse the
+     ⍝ rows
+     diag←↑{⍵⊂⍤⊢⌸⍥,⍨+/↑⍳⍴⍵}⌽data
+     diag_f←xm⍷diag
+     diag_r←mx⍷diag
+     d←diag_f+diag_r
+     (+/+/d+ad)++/+/hv
+ }
