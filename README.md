@@ -2,7 +2,7 @@
 
 [Advent of Code](https://adventofcode.com/) solutions written in [APL](https://en.wikipedia.org/wiki/APL_(programming_language)) (Dyalog).
 
-The main purpose of this repo is to **have fun and learn APL**, not to win leaderboards or write the most optimal code. Expect plenty of comments that read like a learning diary, the occasional brute-force solution, and a steadily shrinking ratio of comments to glyphs as I get more comfortable with the language.
+The main purpose of this repo is to **have fun and learn APL**, not to win leaderboards or write the most optimal code. Expect comments that read like a learning diary in some places, and cryptic uncommented code in others.  the occasional brute-force solution.
 
 ## Why APL?
 
@@ -46,6 +46,9 @@ Thanks to Link, every APL function lives in its own file: `.aplf` files are func
 - [APL Wiki](https://www.aplwiki.com/)
    - [APL built-ins](https://aplwiki.com/wiki/Template:APL_built-ins) - This is a template that's embedded at the bottom of many pages, but it's actually a good reference on its own.
    - [Function composition](https://aplwiki.com/wiki/Function_composition) - A useful reference for all your Tacit programming needs.
+- [Dyalog v20 Programming Reference](https://docs.dyalog.com/20.0/programming-reference-guide/) - Most links you find online will go to Dyalog's old, deprecated docs site. This is the one you actually want.
+   [Glyphs reference](https://docs.dyalog.com/20.0/language-reference-guide/glyphs/)
+   [System Functions](https://docs.dyalog.com/20.0/language-reference-guide/system-functions/system-functions-by-category/)
 - [Dyalog ](https://www.youtube.com/@DyalogLtd) YouTube Channel
    - [Train Spotting in Dyalog APL](https://www.youtube.com/live/Enlh5qwwDuY) - Don't know what the fork you're doing? This is the video that made forks and function trains in general click for me.
    - [Inline Tracing in Dyalog](https://www.youtube.com/watch?v=UM-ahvEpLew) - A useful tool for debugging APL and a great way to learn.

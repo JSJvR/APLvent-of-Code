@@ -1,0 +1,14 @@
+ Part2←{
+    r u←(0∘≠∘≢¨⊆⊢)⍵
+     rules←↑⍎¨¨'|'(≠⊆⊢)¨r
+     updates←⍎¨¨','(≠⊆⊢)¨u
+     grouped←rules[;2]{⍺ ⍵}⌸rules[;1]
+
+
+     invalid←updates/⍨~grouped ValidPrint updates
+
+
+     +/(grouped∘ReorderedMiddle)¨invalid
+     ⍝ Add up the middle page of all valid prints
+     +/{⍵⌷⍨⌈2÷⍨≢⍵}¨valid/updates
+ }

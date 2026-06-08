@@ -1,0 +1,7 @@
+ ValidPrint←{
+     ⍝ Recursive solution that's no longer used
+     ⍝ Replaced by cuyrrying + each
+     0∊⍴⍵:⍬
+     update←⊃⍵
+     (⍺ CanPrint update), ⍺ ∇ 1↓⍵
+ }

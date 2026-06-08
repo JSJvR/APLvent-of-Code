@@ -1,0 +1,10 @@
+ CanPrint←{
+     0∊⍴⍵:1
+
+     ⍝ We go through the pages in reverse order
+     rest cur←¯1((⊂↓),↑)⍵
+     req←∊2⌷(cur=⍺[;1])/⍉⍺
+     valid←∧/rest∊req
+     ~valid:0
+     ⍺ ∇ rest
+ }

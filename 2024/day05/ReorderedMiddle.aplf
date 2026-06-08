@@ -1,0 +1,12 @@
+ ReorderedMiddle←{
+     ⍝ Filter to only relevant rules
+     rules←⍉(∊⍴¨⍵∘∩¨⍺[;1])/⍉⍺
+
+     ⍝ Filter righthand side, tally and sort
+     sorted←rules[;1]⌷⍨⊂⍋≢¨⍵∘∩¨rules[;2]
+
+     ⍝ We might have lost the first page, but we don't care
+     ⍝ since the result below will give us the correct middle
+     ⍝ page regardless
+     {⍵⌷⍨⌈2÷⍨≢⍵}sorted
+ }
