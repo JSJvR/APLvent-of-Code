@@ -1,0 +1,25 @@
+Reduce2←{
+     ⍝ An attempt to make the reduction not so painfully slow
+     ⍝ We keep the numbers as numbers, not convert
+     ⍝ back & forth between strings & numbers multple times
+     ⍺≡'X':⍵ ⍝ Throw away any X's
+
+     ⍝ Left is an operator, so we catenate it with
+     ⍝ the value we've evaluated so far
+     +/⍺∊'×+':⍺,⍵
+
+     ⍝ At this point we know the left argument is a number,
+     ⍝ so if the right argument is also a number, we know
+     ⍝ it's a concatenate and we need to catenate the
+     ⍝ arguments in *reverse* order. We can tell the right
+     ⍝ argument is a number because it only has one element.
+
+     ⍝1=≢⍵:⍎(0 0⍕⍵),⍕⍺
+     1=≢⍵:⍺+⍵×10*⌈10⍟⍺+1
+
+     ⍝ Finally, we know the left is a number and the right
+     ⍝ a two element vector of a string and number, so we
+     ⍝ do the calculation based on which operator we have
+     ⊃⍵='+':⍺+2⊃⍵
+     ⍺×2⊃⍵
+}

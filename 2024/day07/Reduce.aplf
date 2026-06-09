@@ -4,7 +4,6 @@
      ⍝ of starting from scratch with something better
      ⍝ ⎕←⍺,'-',⍵
      ⍺≡'X':⍕⍵ ⍝ Throw away any X's
-     ⍵≡'+':⍺ ⍝ Ignore the right-most '+'
 
      ⍝ Left is an operator, so we catenate it with
      ⍝ the string representation of what we've evaluated

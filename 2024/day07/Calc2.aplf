@@ -1,4 +1,8 @@
  Calc2←{
+     ⍝ This is insanely slow and not working
+     ⍝ correctly. Keeping it here for historical
+     ⍝ reference
      tmp←⌽¨(⍵∘(,,⍤0))¨↓('+',⍨3∘Operators ¯1+⍴⍵)
      ∨/⍺=⍎¨∊¨Reduce/¨tmp
+     ⍝⍎¨∊¨Reduce/¨tmp
  }
