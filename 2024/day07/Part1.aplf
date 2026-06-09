@@ -1,5 +1,6 @@
  Part1←{
      d←↑⍎¨¨':'∘(≠⊆⊢)¨⍵
-
+     ⍝ With all the ⍎ shenanigans, this is (unsurprisingly)
+     ⍝ very slow
      0 0⍕+/d[;1]/⍨{⍺ Calc⍕¨⍵}/d
  }

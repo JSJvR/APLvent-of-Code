@@ -1,4 +1,7 @@
  Operators←{
+     ⍺←2
      ⍝ All combinations of +'s and ×'s, of length ⍵
-     '×+,'[1∘+¨¨↑⊖¨(2∘⊥⍣¯1)¨¯1+⍳2*⍵]
+     ⍝ Part2: Support 'X' as well, signifying concatenation
+
+     '×+X'[1∘+¨¨↑⊖¨(⍺∘⊥⍣¯1)¨¯1+⍳⍺*⍵]
  }

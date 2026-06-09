@@ -1,0 +1,25 @@
+ Reduce←{
+     ⍝ This is what happens if you're determined to
+     ⍝ make a bad solution work at all costs instead
+     ⍝ of starting from scratch with something better
+     ⍝ ⎕←⍺,'-',⍵
+     ⍺≡'X':⍕⍵ ⍝ Throw away any X's
+     ⍵≡'+':⍺ ⍝ Ignore the right-most '+'
+
+     ⍝ Left is an operator, so we catenate it with
+     ⍝ the string representation of what we've evaluated
+     ⍝ so far
+     +/⍺∊'×+':⍺,⍕⍵
+
+     ⍝ At this point we know the left argument is a number,
+     ⍝ so if the right argument is also a number, we know
+     ⍝ it's a concatenate and we need to catenate the
+     ⍝ arguments in *reverse* order
+     ∧/⍵∊⎕D:(⍕⍵),⍺
+
+     ⍝ Finally, we know the left is a number (as a string)
+     ⍝ and the right is a string of the form
+     ⍝ '<<operator>>number', so we catenate the two and
+     ⍝ evaluate the result
+     ⍎⍺,⍵
+ }
