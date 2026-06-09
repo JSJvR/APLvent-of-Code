@@ -1,4 +1,5 @@
  Calc←{
+
      ⍝ We get all the combinations of +'s and ×'s,
      ⍝ then we append a +, interleave the results with
      ⍝ the numbers and reverse the order. This gives us
@@ -6,5 +7,5 @@
      ⍝ puzzle's right-to-left wevaluation to APL's
      ⍝ left-to-right
      ∨/⍺=⍎¨∊¨⌽¨(⍵∘(,,⍤0))¨↓('+',⍨Operators ¯1+⍴⍵)
-
+     ⍝∊¨⊖¨(⍵∘(,,⍤0))¨↓('+',⍨Operators ¯1+⍴⍵)
  }

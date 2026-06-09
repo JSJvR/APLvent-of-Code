@@ -1,6 +1,0 @@
- ValidPrint←{
-     rules←⍵⍵
-     0∊⍴⍵:⍬
-     ⍝⊢update←⊃⍵
-     ⍴⍵
- }

@@ -1,4 +1,4 @@
  Operators←{
      ⍝ All combinations of +'s and ×'s, of length ⍵
-     '×+'[1∘+¨¨↑⊖¨(2∘⊥⍣¯1)¨¯1+⍳2*⍵]
+     '×+,'[1∘+¨¨↑⊖¨(2∘⊥⍣¯1)¨¯1+⍳2*⍵]
  }
