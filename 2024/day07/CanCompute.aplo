@@ -1,0 +1,12 @@
+ CanCompute←{
+     ⍝ Recursive solution with short-circuiting to see if
+     ⍝ it's any faster. I didn't time it, but it looks like
+     ⍝ it's not much faster, if at all. I'm going to commit it
+     ⍝ regardless
+     target←⍺⍺
+     ⍺←¯1+3*≢⍵
+     ⍺<0:0
+     length←¯1+≢⍵
+     target=Reduce2/1↓⌽(⍵∘(,,⍤0))'+',⍨length Operator ⍺: 1
+     (⍺-1) ∇ ⍵
+ }
