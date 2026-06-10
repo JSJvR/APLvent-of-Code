@@ -2,5 +2,6 @@
      d←↑⍎¨¨':'∘(≠⊆⊢)¨⍵
      ⍝ Even slower than Part1. Much, much slower.
      ⍝ As in, go grab some lunch while it runs
-     0 0⍕+/d[;1]/⍨{⍺ Calc3 ⍵}/d
+     ⍝ 0 0⍕+/d[;1]/⍨{⍺ Calc3 ⍵}/d
+     0 0⍕+/d[;1]/⍨{⍺ CanCompute ⍵}/d
  }

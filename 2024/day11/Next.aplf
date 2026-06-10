@@ -1,0 +1,7 @@
+ Next← {
+     ⍵=0:1
+     digits←⌈10⍟⍵+1
+     mult←10*digits÷2
+     ~2|digits:(⌊⍵÷mult),mult|⍵
+     ⍵×2024
+ }

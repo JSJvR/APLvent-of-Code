@@ -1,0 +1,9 @@
+ SplitIter←{
+     ⍺←25
+     ⍺<0:≢⍵
+
+     d←∊⍵
+     half←⌊2÷⍨≢d
+     half>8000:(⍺ ∇ half↑d)+(⍺ ∇ half↓d)
+     (⍺-1)∇ Next¨d
+ }
