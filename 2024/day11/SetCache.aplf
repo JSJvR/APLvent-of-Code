@@ -1,0 +1,8 @@
+ SetCache←{
+     ⎕IO←0
+     ⍝ Indices are outside of the cache range:
+     ∨/⍺≥⍴cache:⍵
+
+     cache[⊂⍺]←⍵
+     cache[⊂⍺]
+ }

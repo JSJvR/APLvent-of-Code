@@ -1,0 +1,28 @@
+ CountNums←{
+     ⎕IO←0
+     ⍝ Count how many numbers ⍵ will expand to
+     ⍝ after ⍺ iterations.
+     ⍝ It could be that the right thing to do
+     ⍝ is to use memoization via dfns.memo, but
+     ⍝ I'm going to try rolling my own
+
+     ⍝ Fallback if numbers are outside cache range
+     ∨/⍺ ⍵≥⍴cache:⍺ Iter ⍵
+
+     ⍝ Value already in cache:
+     cached←cache[⍺;⍵]
+     ⍝ cached>0:⍺ ⍵{⎕←'Cache hit'⍺': '⍵ ⋄ ⍵}cached
+     cached>0:cached
+
+     ⍝ Base case 1:
+     ⍺=0:⍺ ⍵ SetCache 1
+
+     ⍝ Base case 2:
+     ⍝ The cut-off is fairly arbitrary and we don't save the
+     ⍝ intermediate values to the cache, but these calls are so
+     ⍝ quick that it doesn't matter
+     ⍺≤2:⍺ ⍵ SetCache ⍺ Iter ⍵
+
+     ⍝ Cache miss: Recursively calculate
+     ⍺ ⍵ SetCache+/(⍺-1)∘∇¨Next ⍵
+ }
