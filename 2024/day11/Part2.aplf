@@ -1,3 +1,17 @@
  Part2←{
-     0 0⍕+/75∘CountNums¨⍎¨⊃' '∘(≠⊆⊢)¨⍵
+     ⍝ My first attempt at Part2 was basically an optimization of Part 1,
+     ⍝ but then I did a back of the envelope calculation and estimated
+     ⍝ that it will take 15 years to complete
+     ⍝ I then realized thatr the same collection of numbers are probably
+     ⍝ going to appear over and over, e.g. the 0->1->2024->20 24, etc
+     ⍝
+     ⍝ The solution is to have a cache. After a few false starts I settled
+     ⍝ on having sparse columns & dense rows. It was very easy to imlpement
+     ⍝ and surprisingly fast. In early versions I had a function to pre-warm
+     ⍝ the cache, but later found that I didn't need it with my new cache
+     ⍝ implementation. With a cold cache it completes in ~1.5s, and with
+     ⍝ a warm cache ~1ms
+     data←⍎¨⊃' '∘(≠⊆⊢)¨⍵
+     _←76 InitCache data
+     0 0⍕+/75∘CountNums¨data
  }

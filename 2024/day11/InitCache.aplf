@@ -2,10 +2,16 @@
      ⎕IO←0
      ⍺←10 ⍝ Default depth
 
+     ⍝ Don't reinitialize so that I can compare cold & warm start
+     ⍝ performance
+     ⍺=≢cache:⍴cache
+
      ⎕THIS.cache_cols←⊂⍤⍋⍛⌷⍵
-    ⍝ ⎕THIS.cache←(≢⍵) ⍺ ⍴ 0
-    ⍝ I'm not going to write the code to dynamically add
-    ⍝ columns to the cache, so we initialize it to a fixed
-    ⍝ number of columns
+     ⍝ ⎕THIS.cache←(≢⍵) ⍺ ⍴ 0
+     ⍝ I'm not going to write the code to dynamically add
+     ⍝ columns to the cache, so we initialize it to a fixed
+     ⍝ number of columns
      ⎕THIS.cache←⍺ 10000⍴0
+
+     ⍴cache
  }
