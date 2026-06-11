@@ -1,0 +1,47 @@
+Move←{
+    ⍝ Just in case I mess up the recursion
+    ⍵>1000:'No result after 1000 iterations'
+
+    ⍝ There must be a beter way to do this
+    row col ←⊃(⊃,/↓data∊'^>v<')/(⊃,/↓⍳⍴data)
+    row=0:+/+/'X'=data
+    dir←data[row;col]
+
+    _←{ ⍝ Up
+        ⍵≠'^':⍬
+        wall←⌈/0,⍸'#'⍷data[⍳row;col]
+        data[wall+⍳row-wall;col]←'X'
+        wall=0:⍬
+        data[wall+1;col]←Next dir
+        'Up'
+    } dir
+
+    _←{ ⍝ Right
+        ⍵≠'>':⍬
+        wall←¯1+col+⌊/⍸1,⍨'#'⍷(col-1)↓data[row;]
+        data[row;¯1+col+⍳wall-col]←'X'
+        wall>2 ⌷ ⍴data:⍬
+        data[row;wall-1]←Next dir
+        'Right'
+    } dir
+
+    _←{ ⍝ Down
+        ⍵≠'v':⍬
+        wall←¯1+row+⌊/⍸1,⍨'#'⍷(row-1)↓data[;col]
+        data[¯1+row+⍳wall-row;col]←'X'
+        wall>⊃⍴data:⍬
+        data[wall-1;col]←Next dir
+        'Down'
+    } dir
+
+    _←{ ⍝ Left
+        ⍵≠'<':⍬
+        wall←⌈/0,⍸'#'⍷data[row;⍳col]
+        data[row;wall+⍳col-wall]←'X'
+        wall=0:⍬
+        data[row;wall+1]←Next dir
+        'Left'
+    } dir
+
+    ∇⍵+1
+}
