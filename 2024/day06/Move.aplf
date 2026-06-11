@@ -2,7 +2,7 @@ Move←{
     ⍝ Just in case I mess up the recursion
     ⍵>1000:'No result after 1000 iterations'
 
-    ⍝ There must be a beter way to do this
+    ⍝ There must be a better way to do this
     row col ←⊃(⊃,/↓data∊'^>v<')/(⊃,/↓⍳⍴data)
     row=0:+/+/'X'=data
     dir←data[row;col]
