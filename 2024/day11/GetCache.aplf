@@ -1,0 +1,5 @@
+ GetCache←{
+     ⎕IO←0
+    cache_cols∪←⍵
+    cache[⍺;cache_cols ⍳ ⍵]
+ }

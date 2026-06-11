@@ -1,8 +1,9 @@
  SetCache←{
      ⎕IO←0
-     ⍝ Indices are outside of the cache range:
-     ∨/⍺≥⍴cache:⍵
+     row col_key ← ⍺
+     col←cache_cols ⍳ col_key
+     ⍝ We don't support blind writes, i.e. we grow the columns
+     ⍝ on read, not write
 
-     cache[⊂⍺]←⍵
-     cache[⊂⍺]
+     ⊢cache[row;col]←⍵
  }

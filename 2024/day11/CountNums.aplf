@@ -6,11 +6,8 @@
      ⍝ is to use memoization via dfns.memo, but
      ⍝ I'm going to try rolling my own
 
-     ⍝ Fallback if numbers are outside cache range
-     ∨/⍺ ⍵≥⍴cache:⍺ Iter ⍵
-
      ⍝ Value already in cache:
-     cached←cache[⍺;⍵]
+     cached←⍺ GetCache ⍵
      ⍝ cached>0:⍺ ⍵{⎕←'Cache hit'⍺': '⍵ ⋄ ⍵}cached
      cached>0:cached
 

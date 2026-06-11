@@ -1,0 +1,5 @@
+ ShowCache←{
+     ⎕IO←0
+     cache_cols⍪(≢cache_cols)↑[1]cache
+
+ }
