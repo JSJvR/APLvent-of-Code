@@ -1,0 +1,20 @@
+Part2←{
+    ⍝ Is this cheating?
+    _←'scc'⎕CY'dfns'
+
+    ⍝ The square of the distance is good enough since we only
+    ⍝ care about order, and the distances will always be > 1
+    SqDist←{+/×⍨⍵-⍺}
+
+    d←⍎¨¨','∘(≠⊆⊢)¨⍵
+
+    ⍝ Save cross product distances in shared variable to avoid
+    ⍝ passing it around
+    ⎕THIS.mat←∘.SqDist⍨d
+
+    ⍝ Ten thousand shortest distances, which
+    ⍝ is more than enough to make a single circuit
+    dist←10000↑1↓∪⊂⍤⍋⍛⌷∊mat
+
+    ⊃∊×/d/⍨+/mat=Find dist
+}

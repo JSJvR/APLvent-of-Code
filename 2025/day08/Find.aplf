@@ -1,0 +1,21 @@
+Find←{
+    ⍝ Do a binary search for the point where
+    ⍝ the number of components goed from 2 to 1
+
+    ⍝ Start by searching full range
+    ⍺←1,≢⍵
+
+    ⍝ Range converged, so we found our match
+    ⍝ We could return the index, but let's just return
+    ⍝ the distance so that we can look it up in our
+    ⍝ distance crosstab
+    ¯1≤-/⍺:⍵⌷⍨2⌷⍺
+
+    mid←(⊃⍺)+⌈|2÷⍨-/⍺
+    gv←{{⍵/⍳⍴⍵}¨↓⍵}mat∊mid↑⍵
+
+    count←⌈/scc gv
+    ⎕←⍺ '-' mid ': ' count
+    count>1:mid(2⌷⍺)∇ ⍵
+    (⊃⍺)mid ∇ ⍵
+}

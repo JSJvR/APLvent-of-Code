@@ -1,0 +1,29 @@
+Part1←{
+
+    ⍝ The square of the distance is good enough since we only
+    ⍝ care about order, and the distances will always be > 1
+    SqDist←{+/×⍨⍵-⍺}
+
+    d←⍎¨¨','∘(≠⊆⊢)¨⍵
+    mat←∘.SqDist⍨d
+
+    ⍝ Thousand shortest distances:
+    dist←1000↑1↓∪⊂⍤⍋⍛⌷∊mat
+
+    ⍝ This gives us the matching pairs of points, but we
+    ⍝ don't actually care about that:
+    ⍝ {d/⍨+/mat=⍵}¨dist
+
+    ⍝ Adjacency matrix
+    gm←mat∊dist
+
+    ⍝ Convert to adjacency vector (see https://dfns.dyalog.com/n_Graphs.htm)
+    gv←{{⍵/⍳⍴⍵}¨↓⍵}gm
+
+    ⍝ Is this cheating?
+    _←'scc'⎕CY'dfns'
+
+    ⍝ Get the connected components, calculate their sizes and multiply
+    ⍝ the size of the three largest
+    ×/3↑⊂⍤⍒⍛⌷2⌷⍉{⍺(≢⍵)}⌸scc gv
+}
