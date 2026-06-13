@@ -4,7 +4,7 @@ Move←{
 
     ⍝ There must be a better way to do this
     row col ←⊃(⊃,/↓data∊'^>v<')/(⊃,/↓⍳⍴data)
-    row=0:+/+/'X'=data
+    row=0:⍵,+/+/'X'=data
     dir←data[row;col]
 
     _←{ ⍝ Up

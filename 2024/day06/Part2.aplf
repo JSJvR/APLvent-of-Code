@@ -1,106 +1,109 @@
 Part2←{
+    ⍝ The wall of text below is me talking myself into
+    ⍝ doing this in the worst way possible.
+    ⍝
     ⍝ Initial thoughts:
-    ⍝ Follow the same general strategy as in Part 1, 
-    ⍝ but after every move, look along the route we  
+    ⍝ Follow the same general strategy as in Part 1,
+    ⍝ but after every move, look along the route we
     ⍝ just marked, clockwise perpendicular to it, for
-    ⍝ an already marked cell followed by a wall, and 
+    ⍝ an already marked cell followed by a wall, and
     ⍝ then place a wall in the location one space
     ⍝ after where we would need to turn . E.g.
-    ⍝ after moving *up*, we would look to the *right* 
-    ⍝ alongside the route for 'X#', and place a 
+    ⍝ after moving *up*, we would look to the *right*
+    ⍝ alongside the route for 'X#', and place a
     ⍝ candidate turn one space *up* from where we
     ⍝ would need to turn.
-    ⍝ 
+    ⍝
     ⍝ A few things to note:
     ⍝ 1. Technically, when checking along the route,
-    ⍝    we should exclude the last space before where 
-    ⍝    we would turn normally, so that there's space 
-    ⍝    to place the new wall. However, we don't need 
-    ⍝    handle that case. We know that that we won't 
-    ⍝    detect a cycle opportunity there, because 
+    ⍝    we should exclude the last space before where
+    ⍝    we would turn normally, so that there's space
+    ⍝    to place the new wall. However, we don't need
+    ⍝    handle that case. We know that that we won't
+    ⍝    detect a cycle opportunity there, because
     ⍝    that would imply that there's already a cycle
     ⍝    present, which we know is not the case.
-    ⍝ 2. We can't just count the candidate locations 
+    ⍝ 2. We can't just count the candidate locations
     ⍝    as we go, we need to keep track of where they
-    ⍝    are so that we don't double count. However, 
-    ⍝    we can do it in-place by putting a new 
-    ⍝    character there as we go, remembering to 
-    ⍝    adjust our detection to look for the new 
+    ⍝    are so that we don't double count. However,
+    ⍝    we can do it in-place by putting a new
+    ⍝    character there as we go, remembering to
+    ⍝    adjust our detection to look for the new
     ⍝    character in addition to the 'X'.
     ⍝ 3. We can adjust our existing move logic to be
     ⍝    backwards compatible with Part 1 (rather
-    ⍝    than creating new copies), as long as we 
+    ⍝    than creating new copies), as long as we
     ⍝    check for X and our new character when we
     ⍝    do the final counting in Part 1.
     ⍝ 6. In the question they seem to imply that we
-    ⍝    keep track of the direction we traveled 
-    ⍝    when we traverse each box. Initially I 
+    ⍝    keep track of the direction we traveled
+    ⍝    when we traverse each box. Initially I
     ⍝    didn't think we need to, but now I think we
     ⍝    do. Let's consider the up direction move
-    ⍝    in our example above and think about the 
-    ⍝    four directions we could have been moving 
-    ⍝    when the 'X' was placed in  the 'X#' we 
+    ⍝    in our example above and think about the
+    ⍝    four directions we could have been moving
+    ⍝    when the 'X' was placed in  the 'X#' we
     ⍝    detected:
     ⍝    - Down: Easiest case. Hitting the wall in
-    ⍝      an upward direction would put us on the 
+    ⍝      an upward direction would put us on the
     ⍝      same route we were before (post-turn).
     ⍝    - Left: Can't occur. It implies there was
     ⍝      a corner here when we hit it (i.e a wall
-    ⍝      directly southwest of the wall we 
-    ⍝      here detected), but in that case this 
+    ⍝      directly southwest of the wall we
+    ⍝      here detected), but in that case this
     ⍝      block would be the two-direction case we
-    ⍝      describe below. 
-    ⍝    - Up: Potential false positive. We 
+    ⍝      describe below.
+    ⍝    - Up: Potential false positive. We
     ⍝      might need to fully follow the route
     ⍝      and look for a cycle, which might mess
     ⍝      up our whole strategy. Not sure.
     ⍝    - Right: Guarantees a cycle, since turning
-    ⍝      at the candidate spot would put us on the 
+    ⍝      at the candidate spot would put us on the
     ⍝      same route we were before (pre-turn).
     ⍝    - Any two directions: Always a cycle, since
-    ⍝      there's only one way to get a potential 
+    ⍝      there's only one way to get a potential
     ⍝      false positive, so one of the 2+ times we
     ⍝      hit this space, before would be a cycle
     ⍝      case.
-    ⍝ 
+    ⍝
     ⍝      The up case brings extra complexity, which
     ⍝      makes me rethink the strategy. If we need
     ⍝      code that runs a test to look for a cycle,
-    ⍝      we might as well use it all the time, i.e. 
+    ⍝      we might as well use it all the time, i.e.
     ⍝      we mark *all* potential candidates without
     ⍝      worrying about which case it was, and then
-    ⍝      have a post-process step where we run the 
-    ⍝      process from scratch, with the new wall in 
-    ⍝      place, until we detect a cycle or we leave 
-    ⍝      the board. In fact, if we follow this 
-    ⍝      strategy, we might simplify further and 
+    ⍝      have a post-process step where we run the
+    ⍝      process from scratch, with the new wall in
+    ⍝      place, until we detect a cycle or we leave
+    ⍝      the board. In fact, if we follow this
+    ⍝      strategy, we might simplify further and
     ⍝      run a post-process step for every space we
-    ⍝      hit in our first run (i.e. every 'X' on 
-    ⍝      the board after our initial run - about 
-    ⍝      2.5k spaces based on our input). This is 
-    ⍝      wasteful, but I'm confident that it will 
-    ⍝      complete very quickly, given how fast 
+    ⍝      hit in our first run (i.e. every 'X' on
+    ⍝      the board after our initial run - about
+    ⍝      2.5k spaces based on our input). This is
+    ⍝      wasteful, but I'm confident that it will
+    ⍝      complete very quickly, given how fast
     ⍝      Part 1 of the problem completes.
-    ⍝ 
-    ⍝      Cycle detection logic: The simplest 
+    ⍝
+    ⍝      Cycle detection logic: The simplest
     ⍝      approach would be to run the moves logic
-    ⍝      for more iterations than some fixed 
-    ⍝      cutoff, signifying the longest non-cycle 
+    ⍝      for more iterations than some fixed
+    ⍝      cutoff, signifying the longest non-cycle
     ⍝      route, say, 10k. Simple, but inefficient.
-    ⍝      The alternative is to keep track of all 
+    ⍝      The alternative is to keep track of all
     ⍝      the directions in which we traversed each
     ⍝      space in our initial run. This could be
     ⍝      done in 3 bits, but I'm not sure the juice
     ⍝      is worth the squeeze. I'm confident that
-    ⍝      the naive approach will complete in a 
-    ⍝      reasonable mount of time. (My assessment    
-    ⍝      would be very different if I was doing 
-    ⍝      this on an Atari 800XL like I did in 2023) 
+    ⍝      the naive approach will complete in a
+    ⍝      reasonable mount of time. (My assessment
+    ⍝      would be very different if I was doing
+    ⍝      this on an Atari 800XL like I did in 2023)
 
     ⎕THIS.dirs←'^>v<'
     ⎕THIS.Next←{dirs⌷⍨1+4|dirs⍳⍵}
 
     ⎕THIS.data←↑⍵
-    
+
     Move 1
 }

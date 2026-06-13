@@ -1,0 +1,6 @@
+Init←{
+    ⎕THIS.dirs←'^>v<'
+    ⎕THIS.Next←{dirs⌷⍨1+4|dirs⍳⍵}
+
+    ⊢⎕THIS.data←↑⍵
+}

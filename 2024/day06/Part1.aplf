@@ -1,12 +1,9 @@
-Part1←{
+ Part1←{
     ⍝ This would be more efficient to do with a numeric array,
     ⍝ but I want to see if I can do it in text, exactly like shown
     ⍝ in the problem description
 
-    ⎕THIS.dirs←'^>v<'
-    ⎕THIS.Next←{dirs⌷⍨1+4|dirs⍳⍵}
+     _←Init ⍵
 
-    ⎕THIS.data←↑⍵
-
-    Move 1
-}
+     Move 1
+ }
