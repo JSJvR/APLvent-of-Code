@@ -1,0 +1,22 @@
+ApplyBeam2←{
+    ⍝ Functionally equivalent to ApplyBeam, but cleaner when used
+    ⍝ with APLcart's LeftScan: https://aplcart.info/?q=left%20scan
+
+    ⍝⎕←⍺'-'⍵
+    r←⍵
+
+    ⍝ Propagate unsplit beams
+    r[⍸(⍺∊'S|')∧⍵='.']←'|'
+
+    ⍝ Propagate split beams:
+    ⍝ Look for '|' above '^', rotate the result one left
+    ⍝ and one right, and ∨ those two together
+    r[⍸(¯1∘⌽∨1∘⌽)(⍺='|')∧⍵='^']←'|'
+
+    ⍝ To make Part 2 easier, we get rid of splitters with
+    ⍝ no incoming beam
+    r[⍸(⍺='.')∧⍵='^']←'.'
+
+    ⍝ ⎕←r'|'⍺'-'⍵
+    r
+}

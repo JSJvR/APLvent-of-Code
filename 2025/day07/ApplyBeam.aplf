@@ -1,0 +1,32 @@
+ApplyBeam←{
+    ⍝ ⎕←⍺'-'⍵
+    r←⍵
+
+    ⍝ It feels like there must be a better way to do this
+    ⍝ Edit - There is: https://aplcart.info/?q=left%20scan
+    ⍝ Leave the hack here for historical reference. See
+    ⍝ ApplyBeam2 for the left scan implementation
+    l←{1<≡⍵:⊃⍵ ⋄ ⍵}⍺
+
+    ⍝ Propagate unsplit beams
+    r[⍸(l∊'S|')∧⍵='.']←'|'
+
+    ⍝ Propagate split beams:
+    ⍝ Look for '|' above '^', rotate the result one left
+    ⍝ and one right, and ∨ those two together
+    r[⍸(¯1∘⌽∨1∘⌽)(l='|')∧⍵='^']←'|'
+
+    ⍝ If we were to do Part2 in a single pass, a good start
+    ⍝ might be to use the indexing expression above with
+    ⍝ a '+' instead of an '∨', so that the 2's show spaces
+    ⍝ that can be reach from two adjacent splitters.
+    ⍝ However, I'm going to be lazy and do a 2-pass solution
+    ⍝ instead
+
+    ⍝ To make Part 2 easier, we get rid of splitters with
+    ⍝ no incoming beam
+    r[⍸(l='.')∧⍵='^']←'.'
+
+    ⍝ More of the hack mentioned above
+    r{1<≡⍵:(⊂⍺),⍵ ⋄ ⍺ ⍵}⍺
+}

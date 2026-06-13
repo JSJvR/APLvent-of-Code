@@ -1,0 +1,13 @@
+Part1←{
+    ⍝ I think a one way to do it is to exactly mimic the example showed in the problem,
+    ⍝ (i.e. trace the beams with '|'s), then transpose the result and count the
+    ⍝ occurences of '|^'
+
+    ⍝ Old, ugly version:
+    ⍝ t←↑⌽⊃ApplyBeam⍨/⌽⍵
+
+    LeftScan←{c←⊃⍵ ⋄ (1↑⍵),⍺⍺{c⊢←c ⍺⍺ ⍵}¨1↓⍵}
+    ⍝ Return t here to get a pretty picture
+    t←↑ApplyBeam2 LeftScan ⍵
+    +/∊'|^'⍷⍉t
+}

@@ -1,0 +1,46 @@
+CountPaths←{
+    0=≢⍵:⍺
+    ⍝ We want t○ add the values of incoming paths that
+    ⍝ can merge in the current layer, a la Pascal's
+    ⍝ triangle. Each '|' can have up to three incoming
+    ⍝ paths from the previous layer:
+    ⍝ 1. Straight: Previous row has a '|' in this location
+    ⍝    and the current row doesn't have a '^'
+    ⍝    We'll be processing the input one row at a time,
+    ⍝    but we culled all dead '^'s in the initial processing
+    ⍝    so we don't need to check for the first condition
+    ⍝ 2. Left fork: The character the right is a '^'
+    ⍝ 3. Right fork: Mirror image of case 3
+
+    cur←1⌷⍵
+    tail←2↓⍵ ⍝ We can drop two rows because every second line
+             ⍝ in the input has not splits
+
+    ⍝ Seed the accumulator based on where the 'S' is in the
+    ⍝ first row
+    ⍺←'S'=cur
+
+    ⍝ We could have handled all three cases in a one-liner,
+    ⍝ but I think that would be deliberate obfuscation with
+    ⍝ no benefit
+
+    ⍝ Case 1:
+    acc←⍺×'^'≠cur
+
+    ⍝ Case 2:
+    ⍝ We rotate the incoming accumulator ⍺ to line up with the
+    ⍝ places where we detect the left fork. We can get away
+    ⍝ with it since we know the input will always result in
+    ⍝ an accumulator with 0's at the edges.
+    acc+←(1⊖⍺)×'|^'⍷cur
+
+    ⍝ Case 3:
+    ⍝ Here we rotate after the the calculation, since the
+    ⍝ position of the '^|' effectively has an offset that
+    ⍝ matches ⍺. In this case we know the rotation is safe
+    ⍝ because a two character sequence will never have a
+    ⍝ match at the last character of a line.
+    acc+←¯1⊖⍺×'^|'⍷cur
+
+    acc ∇ tail
+}
