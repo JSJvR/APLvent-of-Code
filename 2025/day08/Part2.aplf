@@ -16,5 +16,5 @@ Part2←{
     ⍝ is more than enough to make a single circuit
     dist←10000↑1↓∪⊂⍤⍋⍛⌷∊mat
 
-    ⊃∊×/d/⍨+/mat=Find dist
+    ⊃∊1×/d/⍨+/mat=Find dist
 }

@@ -1,4 +1,15 @@
- Part1←{
-    ' '~⍨¨¯1↓¨1↓¨↑' '(≠⊆⊢)¨⍵
+Part1←{
+    ⍝' '~⍨¨¯1↓¨1↓¨↑' '(≠⊆⊢)¨⍵
+    data←(1∘↓¯1∘↓)¨¨¯1↓¨' '(≠⊆⊢)¨⍵
+    buttons←1+⍎¨¨¨','∘(≠⊆⊢)¨¨1↓¨data
 
- }
+    ⍝ If we take the negation of the target,
+    ⍝ we get a starting position that we can
+    ⍝ iterate on until we have all ones
+    start←⊃¨'.'=1↑¨data
+
+    ⍝ The ↑ below adds a bunch of 0 only button configs,
+    ⍝ but since they're no-ops, they make no difference
+    ⍝ to the outcome
+    FlipLights start,↑buttons
+}

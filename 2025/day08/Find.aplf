@@ -15,7 +15,7 @@ Find←{
     gv←{{⍵/⍳⍴⍵}¨↓⍵}mat∊mid↑⍵
 
     count←⌈/scc gv
-    ⎕←⍺ '-' mid ': ' count
+    ⍝ ⎕←⍺ '-' mid ': ' count
     count>1:mid(2⌷⍺)∇ ⍵
     (⊃⍺)mid ∇ ⍵
 }

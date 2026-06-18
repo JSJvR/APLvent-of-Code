@@ -1,0 +1,11 @@
+FlipLights←{
+    ⍺←0
+    0=≢⍵:⍺
+    cur←1⌷⍵
+    tail←1↓⍵
+
+    start←⊃cur
+    buttons←(⍳≢start)∘∊¨1↓cur
+
+    (⍺+buttons Flip ⊂start) ∇ tail
+}
