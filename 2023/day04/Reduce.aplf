@@ -1,0 +1,15 @@
+ Reduce←{
+     ⍺←0
+     1=≢⍵:⍵
+     cur←,1↑⍵
+
+     ⍝ The multiplier is the cummulative sum of
+     ⍝ the nth column
+     mult←cur[⍺+1]
+
+     temp←1↓⍵
+     ⍝ ⎕←cur, mult
+
+     temp[1;]←cur+temp[1;]×mult
+     (⍺+1)∇ temp
+ }
