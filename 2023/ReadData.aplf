@@ -1,0 +1,1 @@
+ ReadData←{⊃⎕NGET('2023/Data/day',(¯2↑'0',⍕⍵),'.txt')1}

@@ -1,0 +1,9 @@
+ Run←{
+     ⍺←1 ⍝ Default to Part1
+     day←'day',(¯2↑'0',⍕⍵)
+     ns←day ⎕NS''
+     start←⎕AI[3]
+     result←ns⍎'Part',⍕⍺,' #.ReadData ',⍕⍵
+     ⎕←'Finished in',(1000÷⍨⎕AI[3]-start),'seconds'
+     result
+ }

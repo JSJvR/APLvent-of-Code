@@ -1,6 +1,6 @@
 # APLvent of Code
 
-[Advent of Code](https://adventofcode.com/) solutions written in [APL](https://en.wikipedia.org/wiki/APL_(programming_language)) (Dyalog).
+[Advent of Code](https://adventofcode.com/) solutions written in Dyalog [APL](https://en.wikipedia.org/wiki/APL_(programming_language)).
 
 The main purpose of this repo is to **have fun and learn APL**, not to win leaderboards or write the most optimal code. Expect comments that read like a learning diary in some places, and cryptic uncommented code in others.  the occasional brute-force solution.
 
@@ -20,6 +20,9 @@ Thanks to Link, every APL function lives in its own file: `.aplf` files are func
    ⍝ Set up Link for the year you're currently working on
    ]LINK.Create # ./2025
 
+   ⍝ My preferred display style
+   ]Boxing on -style=mid -train=tree
+
    ⍝ Use the Run function to execute a solution for a specific day.
    ⍝ The data read from ./Data/dayXX.txt is passed as the argument to dayXX.PartY.
    ⍝ Use the left argument to specify which part to run.
@@ -34,7 +37,7 @@ Thanks to Link, every APL function lives in its own file: `.aplf` files are func
    ⍝ or create a new namespace to have the IDE create it for you
    'day11' ⎕NS ''
 
-   ⍝ Create/edit Part1 (or type the name and press Ctrl+Enter):
+   ⍝ Create/edit Part1 (or type the name and press Shift+Enter):
    )ED day11.Part1
 ```
 

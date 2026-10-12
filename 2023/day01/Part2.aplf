@@ -1,0 +1,18 @@
+ Part2←{
+     digits←' '(≠⊆⊢)'one two three four five six seven eight nine'
+
+     ⍝ Turn first and last letter into zero width matches so that overlapping numbers are preserved
+     re←{'(?<=',(⊃⍵),')',(⌽1↓⌽1↓⍵),'(?=',(⊃⌽⍵),')'}¨digits
+
+     ⍝ Turn the list of regexes into a single regex
+     dre←⊃{⍺,'|',⍵}⌿{'(',⍵,')'}¨re
+
+     ⍝ Drop first & last letter to make substitution work
+     stripped←{⌽1↓⌽1↓⍵}¨digits
+
+     ⍝ Replace words with digits, preserving the first at last letter
+     data←(dre ⎕R{⍕⍸⍵.Match∘≡¨stripped})¨⍵
+
+     d←{⍵/⍨⍵∊'123456789'}¨data
+     +/{⍎(1↑⍵),1↑⊖⍵}¨d
+ }
